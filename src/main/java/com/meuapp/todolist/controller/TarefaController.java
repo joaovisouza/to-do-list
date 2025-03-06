@@ -2,7 +2,6 @@ package com.meuapp.todolist.controller;
 
 import com.meuapp.todolist.dto.TarefaDTO;
 import com.meuapp.todolist.model.Tarefa;
-import com.meuapp.todolist.repository.TarefaRepository;
 import com.meuapp.todolist.service.TarefaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,10 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tarefas")
@@ -40,7 +37,6 @@ public class TarefaController {
     @Operation(summary = "Criar uma nova tarefa", description = "Cria uma nova tarefa e retorna ela com ID gerado.")
     public ResponseEntity<Tarefa> criarTarefa(@Valid @RequestBody TarefaDTO dto) {
         Tarefa novaTarefa = service.salvar(dto);
-        System.out.println("Salvando tarefa");
         return ResponseEntity.status(HttpStatus.CREATED).body(novaTarefa);
     }
 
